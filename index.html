@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Chat room</title>
+		<link rel="stylesheet" href="./src/output.css">
+	</head>
+	<body>
+		<div class="container max-w-3xl mx-auto rounded-xl border border-blue-500 py-10 px-3 mt-20">
+			<h1 class="text-5xl text-blue-500 text-center font-semibold">Chat room</h1>
+			
+			<div class="flex justify-center mt-5 gap-3">
+				<input id="username" type="text" placeholder="Enter your name" class="block pl-4 border rounded-xl border-gray-400 outline-0 ring-0">
+				<button id="joinBtn" class="cursor-pointer bg-green-500 px-5 py-2 rounded-xl text-white font-semibold">Join chat room</button>
+				<button id="leaveBtn" class="hidden cursor-pointer bg-red-500 px-5 py-2 rounded-xl text-white font-semibold">Leave</button>
+			</div>
+			
+			
+			<div id="chat" class="chat hidden">
+				<div id="messages" class="messages flex flex-col gap-3">
+				
+				</div>
+				
+				<label class="mt-10 flex w-full">
+					<input type="text"
+						   id="messageInput"
+						   placeholder="Type your message..."
+						   class="border border-gray-400 w-full rounded-l-xl px-3 py-2 outline-0 ring-0">
+					<button id="sendBtn"
+							class="cursor-pointer border px-4 border-gray-400 border-0 bg-green-500 text-white rounded-r-xl">Send</button>
+				</label>
+			</div>
+		</div>
+		
+		<script src="./js/script.js"></script>
+	</body>
+</html>
+
+
+
+
+
+
+
