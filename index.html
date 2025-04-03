@@ -9,18 +9,22 @@
 		<link rel="stylesheet" href="./src/output.css">
 	</head>
 	<body>
-		<div class="container max-w-3xl mx-auto rounded-xl border border-blue-500 py-10 px-3 mt-20">
-			<h1 class="text-5xl text-blue-500 text-center font-semibold">Chat room</h1>
+		<div class="container max-w-xl mx-auto rounded-xl border overflow-hidden mt-20">
+			<header class="bg-neutral-700 py-7 px-3 text-white">
+				<h1 class="text-5xl text-center font-semibold">Chat room</h1>
+				
+				<div class="flex justify-center mt-5 gap-3">
+					<input id="username" type="text" placeholder="Enter your name" class="text-white block pl-4 border rounded-xl border-gray-200 outline-0 ring-0">
+					<button id="joinBtn" class="cursor-pointer bg-green-500 px-5 py-2 rounded-xl text-white font-semibold">Join chat room</button>
+					<button id="leaveBtn" class="hidden cursor-pointer bg-red-500 px-5 py-2 rounded-xl text-white font-semibold">Leave</button>
+				</div>
+			</header>
 			
-			<div class="flex justify-center mt-5 gap-3">
-				<input id="username" type="text" placeholder="Enter your name" class="block pl-4 border rounded-xl border-gray-400 outline-0 ring-0">
-				<button id="joinBtn" class="cursor-pointer bg-green-500 px-5 py-2 rounded-xl text-white font-semibold">Join chat room</button>
-				<button id="leaveBtn" class="hidden cursor-pointer bg-red-500 px-5 py-2 rounded-xl text-white font-semibold">Leave</button>
-			</div>
-			
-			
+		</div>
+		
+		<div class="container max-w-xl mx-auto mt-5">
 			<div id="chat" class="chat hidden">
-				<div id="messages" class="messages flex flex-col gap-3">
+				<div id="messages" class="messages flex flex-col gap-3 h-[350px] overflow-y-auto">
 				
 				</div>
 				

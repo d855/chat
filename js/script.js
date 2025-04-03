@@ -11,7 +11,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const chat = document.querySelector('#chat')
     const messagesContainer = document.querySelector('#messages')
 
-    joinBtn.addEventListener('click', () => {
+    joinBtn.addEventListener('click', (e) => {
+
         let userName = username.value.trim();
 
         if(userName.length === 0) {
@@ -33,33 +34,48 @@ window.addEventListener('DOMContentLoaded', () => {
         ws.onmessage = (event) => {
             const data = JSON.parse(event.data)
 
-            console.log(data.text)
+            console.log(data)
 
-            let isSelf = data.user === userName;
-
-            let messageEl = document.createElement('div')
-
-            let messageText = document.createElement('span')
-            messageText.textContent = data.text
-            messageEl.appendChild(messageText)
-            let messageTime = document.createElement('span')
-            messageTime.textContent = data.time
-            messageEl.appendChild(messageTime)
-
-            if(isSelf) {
-                messageEl.classList.add('send-message')
-                messageTime.classList.add('send-time')
+            if(data.type === 'history') {
+                generateHistoryMessages(data.messages)
             } else {
-                messageEl.classList.add('received-msg')
-                messageTime.classList.add('received-time')
-            }
+                let isSelf = data.user === userName;
 
-            messagesContainer.appendChild(messageEl)
+                let messageEl = document.createElement('div')
+                let messageText = document.createElement('span')
+                messageText.textContent = data.text
+                messageEl.appendChild(messageText)
+
+                if (data.type === 'system') {
+                    messageEl.classList.add('service-message')
+                } else {
+                    let messageTime = document.createElement('span')
+                    messageTime.textContent = data.time
+                    messageEl.appendChild(messageTime)
+
+                    if(isSelf) {
+                        messageEl.classList.add('send-message')
+                        messageTime.classList.add('send-time')
+                    } else {
+                        messageEl.classList.add('received-msg')
+                        messageTime.classList.add('received-time')
+                        messageEl.style.backgroundColor = data.color
+                    }
+                }
+
+                messagesContainer.appendChild(messageEl)
+            }
         }
 
     });
 
-    sendBtn.addEventListener('click', () => {
+    username.addEventListener('keyup', (e) => {
+        if(e.key === 'Enter') {
+            joinBtn.click()
+        }
+    })
+
+    sendBtn.addEventListener('click', (e) => {
         let msg = messageInput.value.trim();
 
         if(msg.length === 0) {
@@ -82,4 +98,33 @@ window.addEventListener('DOMContentLoaded', () => {
         joinBtn.classList.remove('hidden')
         leaveBtn.classList.add('hidden')
     })
+
+    messageInput.addEventListener('keyup', (e) => {
+        if(e.key === 'Enter') {
+            sendBtn.click()
+        }
+    })
+
+    function generateHistoryMessages(messages) {
+        messagesContainer.innerHTML = ''
+
+        messages.forEach(message => {
+
+            let messageEl = document.createElement('div')
+            let messageText = document.createElement('span')
+
+            messageText.textContent = message.text
+            messageEl.appendChild(messageText)
+
+            let messageTime = document.createElement('span')
+            messageTime.textContent =  message.time
+            messageEl.appendChild(messageTime)
+
+            messageEl.classList.add('received-msg')
+            messageTime.classList.add('received-time')
+            messageEl.style.backgroundColor = 'lightgray'
+            messagesContainer.appendChild(messageEl)
+
+        })
+    }
 })

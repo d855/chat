@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 .received-msg {
-    @apply flex flex-col bg-gray-300 w-fit px-3 py-1 rounded-xl text-base;
+    @apply flex flex-col text-white w-fit px-3 py-1 rounded-xl text-base;
 }
 
 .received-time {
     @apply text-xs text-gray-500;
+}
+
+.service-message {
+    @apply text-center text-xs text-neutral-500
 }
 
 .send-message {
@@ -13,5 +17,5 @@
 }
 
 .send-time {
-    @apply text-xs text-gray-200;
+    @apply text-xs text-gray-50;
 }
